@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('direccion');
             $table->string('localidad');
             $table->integer('cp');
+            $table->boolean('mail_confirmado')->default(0);
             $table->enum('type', ['admin', 'user']);
             $table->rememberToken();
             $table->timestamps();

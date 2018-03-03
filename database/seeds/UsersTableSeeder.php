@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder {
             'direccion' => 'c/Alcantara 8 4º D',
             'localidad' => 'Madrid',
             'cp' => '28030',
-            'type' => 'user',
+            'type' => 'admin',
         );
 
         //// Uncomment the below to run the seeder

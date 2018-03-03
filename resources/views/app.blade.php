@@ -21,11 +21,6 @@
     </head>
     <body>
         <div class="container">
-            <div class="registro text-right img-rounded">
-                <a href="/login">Acceder</a>
-                 | 
-                <a href="/registro">Registro</a>
-            </div>
             <header>
                 <figure>
                     <img class="img-rounded" src="{{ asset('img/imagenes/fototitulo.png') }}" alt="imagen de inicio">
@@ -51,6 +46,12 @@
                                 <a href="{{ route('categorias.show', $categoria->slug) }}">{{ $categoria->nombre }}</a>
                             </li>
                             @endforeach
+                            <li>
+                                <a href="/login">Acceder</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('users.create') }}">Registro</a>
+                            </li>
                         </ul>
                         {!! Form::open(['url' => 'buscar', 'method' => 'GET', 'class' => 'form-inline navbar navbar-light bg-light pull-right buscador', 'role' => 'search']) !!}
                         Buscar en:

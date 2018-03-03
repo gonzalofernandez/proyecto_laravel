@@ -18,7 +18,7 @@ Route::get('/privacidad', 'HomeController@legal');
 Route::get('/condicionesuso', 'HomeController@legal');
 Route::get('/condicionesventa', 'HomeController@legal');
 Route::get('/derechos', 'HomeController@legal');
-Route::get('/registro', 'HomeController@registro');
 
 //Otras rutas
 Route::get('/categorias/{categoria}/filtrar', 'CategoriasController@filtrar');
+Route::get('/verificacion/{confirm_token}', 'UsersController@confirmRegister');
