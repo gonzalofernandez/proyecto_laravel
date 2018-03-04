@@ -64,26 +64,26 @@ class UsersController extends Controller {
         return redirect()->action('HomeController@index', compact('categorias'));
     }
 
-    public function confirmRegister($confirm_token){
-            
-            $user = \App\User::where('confirm_token', '=', $confirm_token)
-                    ->first();
-             // si hay usuario activamos la cuenta
-            if($user){
-                if($user->active == 0) {
-                    $user->type = 'user';
-                    $active = 1;
-                    $user->fill(['active' => $active]);
-                    $user->save();
-                    Session::flash('success', 'Bienvenido '.$user->name.' tu cuenta esta activada, ya puedes iniciar sesion');
-                    return \Redirect::route('usuario.index');
-                } else {
-                    return \Redirect::route('usuario.index');
-                }
+    public function confirmRegister($confirm_token) {
+
+        $user = \App\User::where('confirm_token', '=', $confirm_token)->first();
+        // si hay usuario activamos la cuenta
+        if ($user) {
+            if ($user->active == 0) {
+                $user->type = 'user';
+                $active = 1;
+                $user->fill(['active' => $active]);
+                $user->save();
+                Session::flash('success', 'Bienvenido ' . $user->name . ' tu cuenta esta activada, ya puedes iniciar sesion');
+                return \Redirect::route('usuario.index');
+            } else {
+                return \Redirect::route('usuario.index');
             }
-            Session::flash('danger', 'Error de activación, token no encontrado');
-            return \Redirect::route('usuario.index');
         }
+        Session::flash('danger', 'Error de activación, token no encontrado');
+        return \Redirect::route('usuario.index');
+    }
+
     /**
      * Display the specified resource.
      *

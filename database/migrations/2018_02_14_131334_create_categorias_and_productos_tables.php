@@ -26,7 +26,7 @@ class CreateCategoriasAndProductosTables extends Migration {
             $table->string('nombre')->default('');
             $table->string('slug')->default('');
             $table->text('descripcion');
-            $table->string('precio')->default(0);
+            $table->float('precio')->default(0);
             $table->string('imagen')->default('');
             $table->timestamps();
         });

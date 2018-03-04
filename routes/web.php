@@ -22,3 +22,9 @@ Route::get('/derechos', 'HomeController@legal');
 //Otras rutas
 Route::get('/categorias/{categoria}/filtrar', 'CategoriasController@filtrar');
 Route::get('/verificacion/{confirm_token}', 'UsersController@confirmRegister');
+Route::get('/categorias/{categoria}/productos/{producto}/oferta', 'ProductosController@oferta');
+
+//Atenticación y registro
+Auth::routes();
+Route::get('/home', 'HomeController@ofertas');
+//Route::get('/home', 'HomeController@index')->name('home');

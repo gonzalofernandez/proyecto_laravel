@@ -59,6 +59,10 @@ ul {
     cursor: default;
 }
 
+.centrado_vertical {
+    padding-top: 2%;
+}
+
 .mayuscula::first-letter {
     text-transform: uppercase;
 }
@@ -233,8 +237,13 @@ figure img {
 .precio {
     color: green;
 }
+
 .azul {
     color: #004080;
+}
+
+.rojo {
+    color: red;
 }
 
 .buscador {

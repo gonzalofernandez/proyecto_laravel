@@ -41,16 +41,21 @@
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            @foreach ($categorias as $categoria)
-                            <li>
-                                <a href="{{ route('categorias.show', $categoria->slug) }}">{{ $categoria->nombre }}</a>
+                            <li class="centrado_vertical">
+                                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Categorias
+                                </button>
+                                <div class="dropdown-menu">
+                                    @foreach ($categorias as $categoria)
+                                    <a href="{{ route('categorias.show', $categoria->slug) }}">{{ $categoria->nombre }}</a><br>
+                                    @endforeach
+                                </div>
                             </li>
-                            @endforeach
                             <li>
                                 <a href="/login">Acceder</a>
                             </li>
                             <li>
-                                <a href="{{ route('users.create') }}">Registro</a>
+                                <a href="/register">Registro</a>
                             </li>
                         </ul>
                         {!! Form::open(['url' => 'buscar', 'method' => 'GET', 'class' => 'form-inline navbar navbar-light bg-light pull-right buscador', 'role' => 'search']) !!}

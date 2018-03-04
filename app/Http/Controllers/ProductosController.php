@@ -62,8 +62,11 @@ class ProductosController extends Controller {
      * @param  \App\Task    $task
      * @return Response
      */
-    public function show(Categoria $categoria, Producto $producto) {
-        return view('layouts.producto', compact('categoria', 'producto'))
+    public function show(Categoria $categoria, Producto $producto, $ofertas = null) {
+        if ($ofertas) {
+            $descuentoOferta = 0.85;
+        }
+        return view('layouts.producto', compact('categoria', 'producto', 'descuentoOferta'))
                         ->with('categorias', Categoria::all());
     }
 
@@ -109,6 +112,12 @@ class ProductosController extends Controller {
           return Redirect::route('projects.show', $project->slug)->with('message', 'Task deleted.');
 
          */
+    }
+
+    public function oferta(Categoria $categoria, Producto $producto) {
+        $descuentoOferta = 0.85;
+        return view('layouts.producto', compact('categoria', 'producto', 'descuentoOferta'))
+                        ->with('categorias', Categoria::all());
     }
 
 }

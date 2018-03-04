@@ -19,7 +19,8 @@ class HomeController extends Controller {
      */
     public function __construct() {
         $this->categorias = \App\Categoria::all();
-        //$this->middleware('auth', ['only' => ['ofertas']]);
+        $this->middleware('auth', ['only' => ['ofertas']]);
+        //$this->middleware('auth', ['only' => ['register', 'showRegistrationForm', 'login', 'showLoginForm']]);
     }
 
     /**
@@ -50,9 +51,15 @@ class HomeController extends Controller {
         return view('layouts.buscar', compact('categorias', 'productos', 'busqueda'));
     }
     
-    public function registro() {
+    public function ofertas() {
         $categorias = $this->categorias;
-        return view('layouts.registro', compact('categorias'));
+        $descuentoOferta = floatval(0.85);
+        $ofertas = [
+            \App\Producto::where('categoria_id', 1)->get()->random(),
+            \App\Producto::where('categoria_id', 2)->get()->random(),
+            \App\Producto::where('categoria_id', 3)->get()->random(),
+        ];
+        return view('layouts.ofertas.ofertas', compact('categorias', 'ofertas', 'descuentoOferta'));
     }
 
 }
