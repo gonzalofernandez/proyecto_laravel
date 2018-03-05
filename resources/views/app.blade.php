@@ -35,12 +35,37 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
+                        @if (Auth::check())
+                        <a class="navbar-brand" href="{{ route('users.show', Auth::user()) }}">
+                        @else
                         <a class="navbar-brand" href="/">
+                        @endif
                             <img class="img logotienda" src="{{ asset('img/iconos/navbrand.png') }}" alt="logo de la tienda">
                         </a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
+                            @if (Auth::check())
+                            <li class="centrado_vertical">
+                                Hola
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::user()->nombre }}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a href="{{ route('users.edit', [Auth::user()]) }}">Perfil</a>
+                                    {!! Form::open(['url' => 'logout', 'method' => 'POST', 'class' => 'form-inline', 'role' => 'button']) !!}
+                                    {!! Form::submit('Cerrar sesión', ['class'=>'btn']) !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </li>
+                            @else
+                            <li>
+                                <a href="/login">Acceder</a>
+                            </li>
+                            <li>
+                                <a href="/register">Registro</a>
+                            </li>
+                            @endif
                             <li class="centrado_vertical">
                                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Categorias
@@ -50,12 +75,6 @@
                                     <a href="{{ route('categorias.show', $categoria->slug) }}">{{ $categoria->nombre }}</a><br>
                                     @endforeach
                                 </div>
-                            </li>
-                            <li>
-                                <a href="/login">Acceder</a>
-                            </li>
-                            <li>
-                                <a href="/register">Registro</a>
                             </li>
                         </ul>
                         {!! Form::open(['url' => 'buscar', 'method' => 'GET', 'class' => 'form-inline navbar navbar-light bg-light pull-right buscador', 'role' => 'search']) !!}

@@ -3,14 +3,14 @@
 @section('content')
 
 <section>
-    <h1  id="titulo-categoria" class="rojo">Productos en oferta para usted</h1>
+    <h1  id="titulo-categoria" class="rojo">Productos con un 15% de descuento</h1>
     <ul>
         @foreach( $ofertas as $producto )
         @foreach( $categorias as $categoria )
         @if ( $producto->categoria_id === $categoria->id )
         <li class="col-lg-4 contenido">
             <p><strong>{{ $producto->nombre }}</strong></p>
-            <a href="/categorias/{{$categoria->slug}}/productos/{{$producto->slug}}/oferta/#nombreProducto">
+            <a href="/categorias/{{$categoria->slug}}/productos/{{$producto->slug}}/oferta/#producto">
                 <img class="img-rounded reducida" src="{{ asset($producto->imagen) }}" alt="foto de producto">
             </a>
             <p class="mayuscula precio">
@@ -26,9 +26,6 @@
         @endforeach
         @endforeach
     </ul>
-    <div class="aclarado">
-        <a href="/">Volver</a>
-    </div>
 </section>
 
 @endsection

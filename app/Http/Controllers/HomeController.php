@@ -18,9 +18,14 @@ class HomeController extends Controller {
      * @return void
      */
     public function __construct() {
+        //
         $this->categorias = \App\Categoria::all();
+        $this->productos = [
+            \App\Producto::where('categoria_id', 1)->get()->random(),
+            \App\Producto::where('categoria_id', 2)->get()->random(),
+            \App\Producto::where('categoria_id', 3)->get()->random(),
+        ];
         $this->middleware('auth', ['only' => ['ofertas']]);
-        //$this->middleware('auth', ['only' => ['register', 'showRegistrationForm', 'login', 'showLoginForm']]);
     }
 
     /**
@@ -29,21 +34,20 @@ class HomeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        //
         $categorias = $this->categorias;
-        $productos = [
-            \App\Producto::where('categoria_id', 1)->get()->random(),
-            \App\Producto::where('categoria_id', 2)->get()->random(),
-            \App\Producto::where('categoria_id', 3)->get()->random(),
-        ];
+        $productos = $this->productos;
         return view('layouts.inicio', compact('categorias', 'productos'));
     }
 
     public function legal() {
+        //
         $categorias = $this->categorias;
         return view('layouts.privacidad', compact('categorias'));
     }
 
     public function buscar(Request $request) {
+        //
         $busqueda = $request->get('busqueda');
         $filtro = $request->get('filtro-busqueda');
         $productos = \App\Producto::name($busqueda, $filtro)->paginate(3);
@@ -52,14 +56,11 @@ class HomeController extends Controller {
     }
     
     public function ofertas() {
+        //
         $categorias = $this->categorias;
         $descuentoOferta = floatval(0.85);
-        $ofertas = [
-            \App\Producto::where('categoria_id', 1)->get()->random(),
-            \App\Producto::where('categoria_id', 2)->get()->random(),
-            \App\Producto::where('categoria_id', 3)->get()->random(),
-        ];
-        return view('layouts.ofertas.ofertas', compact('categorias', 'ofertas', 'descuentoOferta'));
+        $ofertas = $this->productos;
+        return view('layouts.usuario.ofertas', compact('categorias', 'ofertas', 'descuentoOferta'));
     }
 
 }

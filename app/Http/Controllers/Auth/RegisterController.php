@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller {
     /*
@@ -52,9 +53,6 @@ use RegistersUsers;
                     'direccion' => 'required',
                     'localidad' => 'required',
                     'cp' => 'required|digits:5',
-                        /* 'name' => 'required|string|max:255',
-                          'email' => 'required|string|email|max:255|unique:users',
-                          'password' => 'required|string|min:6|confirmed', */
         ]);
     }
 
@@ -65,10 +63,11 @@ use RegistersUsers;
      * @return \App\User
      */
     protected function create(array $data) {
+        Session::flash('message', 'Se ha registrado en la aplicación');
         return User::create([
                     'nombre' => $data['nombre'],
                     'apellidos' => $data['apellidos'],
-                    'password' => bcrypt($data['password']),
+                    'password' => 'password'/*bcrypt($data['password'])*/,
                     'email' => $data['email'],
                     'direccion' => $data['direccion'],
                     'localidad' => $data['localidad'],
@@ -76,9 +75,6 @@ use RegistersUsers;
                     'type' => 'user',
                     'confirm_token' => str_random(100),
                     'remember_token' => str_random(100),
-                        /* 'name' => $data['name'],
-                          'email' => $data['email'],
-                          'password' => bcrypt($data['password']), */
         ]);
     }
 
