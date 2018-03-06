@@ -106,9 +106,9 @@
                 @endif
                 @yield('content')
             </main>
-            <aside class="col-lg-2 pull-right">
+            <aside class="col-lg-2 pull-right fondo img-rounded">
                 <div class="text-center">
-                    <h3 class="text-uppercase azul">categorias</h3>
+                    <h3 class="text-uppercase gris">categorias</h3>
                     @foreach ($categorias as $categoria)
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -128,7 +128,7 @@
                 </div>
             </aside>
             <footer>
-                <section id="contacto">
+                <section id="contacto" class="col-lg-4">
                     <h2 class="azul text-uppercase">contacto</h2>
                     <address>
                         <p>999-999-999</p>
@@ -136,7 +136,7 @@
                         <p class="mayuscula">calle Laguna nº12 Madrid 28000</p>
                     </address>
                 </section>
-                <section id="social">
+                <section id="social" class="col-lg-4">
                     <h2 class="azul text-uppercase">síguenos</h2>
                     <div>
                         <a href="//twitter.com"><img class="redsocial" src="{{ asset('img/iconos/twitter.png') }}" alt="logo de twitter"></a>
@@ -151,11 +151,11 @@
                         <a href="//whatsapp.com"><img class="redsocial" src="{{ asset('img/iconos/whatsapp.png') }}" alt="logo de whatsapp"></a>
                     </div>
                 </section>
-                <section id="geolocalizacion">
+                <!--<section id="geolocalizacion">
                     <h2 class="azul text-uppercase">dónde estamos</h2>
                     <figure id="geo"></figure>
-                </section>
-                <section id="legal">
+                </section>-->
+                <section id="legal" class="col-lg-4">
                     <h2 class="azul text-uppercase">aviso legal</h2>
                     <ul>
                         <li>
@@ -172,7 +172,7 @@
                         </li>
                     </ul>
                 </section>
-                <p class="text-uppercase" id="copyright">2018 - interface design</p>
+                <p class="text-uppercase aclarado" id="copyright">2018 - interface design</p>    
             </footer>
             <!-- Scripts -->
             <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>

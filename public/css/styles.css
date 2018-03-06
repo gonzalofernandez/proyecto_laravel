@@ -1,13 +1,13 @@
 /*CSS de la web Tienda de Libros*/
 /* font converted using font-converter.net. thank you! */
 @font-face {
-  font-family: 'ModernPictograms';
-  src: url('../fonts/modernpics.eot'); /* IE9 Compat Modes */
-  src: url('../fonts/modernpics.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/modernpics.woff2') format('woff2'), /* Modern Browsers */
-    url('./fonts/modernpics.woff') format('woff'), /* Modern Browsers */
-    url('../fonts/modernpics.svg') format('svg'); /* Legacy iOS */  font-weight: normal;
-  font-style: normal;
+    font-family: 'ModernPictograms';
+    src: url('../fonts/modernpics.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/modernpics.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/modernpics.woff2') format('woff2'), /* Modern Browsers */
+        url('./fonts/modernpics.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/modernpics.svg') format('svg'); /* Legacy iOS */  font-weight: normal;
+    font-style: normal;
 }
 
 body {
@@ -76,6 +76,22 @@ ul {
     padding-top: 3%;
 }
 
+body {
+    background: url(../img/imagenes/fondo.png) no-repeat center center fixed;
+    background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+}
+
+aside {
+    height: 32em;
+}
+
+.fondo {
+    background: url(../img/inicio/articulos.png);
+}
+
 .mayuscula::first-letter {
     text-transform: uppercase;
 }
@@ -114,7 +130,11 @@ figure, .margen-inferior {
 }
 
 figure img {
-    width: 100%;
+    width: 99%;
+}
+
+.gris {
+    color: lightgray;
 }
 
 #registro {
@@ -265,8 +285,6 @@ figure img {
 }
 
 #contacto {
-    float: left;
-    width: 50%;
     text-align: center;
     line-height: 2em;
 }
@@ -277,11 +295,8 @@ address, #copyright {
 }
 
 #social {
-    float: left;
-    width: 50%;
     color: white;
     text-align: center;
-    line-height: 2em;
 }
 
 #social div {
@@ -309,8 +324,6 @@ address, #copyright {
 
 #legal {
     line-height: 2em;
-    clear: both;
-    width: 100%;
     /*color: white;*/
     text-align: center;
 }
