@@ -3,50 +3,44 @@
 @section('content')
 
 <figure>
-    <img class="img-rounded" src="{{ asset('img/inicio/promosocios.png') }}" alt="imagen inicial">
+    <img class="img-rounded" src="{{ asset('img/inicio/promosocios.png') }}" alt="Imagen inicial">
 </figure>
-<!--id="imagen"class="redondeando"<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" class="carousel slide margen-inferior container contenido" data-ride="carousel">
+    <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
+    <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="{{ asset('img/inicio/socios.png') }}" alt="First slide">
+        <div class="item active">
+            <img class="img-carr img-rounded" src="{{ asset('img/inicio/carrusel/foto1.png') }}" alt="Foto de snowboard">
         </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('img/inicio/socios.png') }}" alt="Second slide">
+
+        <div class="item">
+            <img class="img-carr img-rounded" src="{{ asset('img/inicio/carrusel/foto2.png') }}" alt="Foto de snowboard">
         </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="{{ asset('img/inicio/socios.png') }}" alt="Third slide">
+
+        <div class="item">
+            <img class="img-carr img-rounded" src="{{ asset('img/inicio/carrusel/foto3.png') }}" alt="Foto de snowboard">
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>-->
-<div class="container-fluid">
-    <div class="row">
-        @foreach ($productos as $producto)
-        @foreach ($categorias as $categoria)
-        @if ($producto->categoria_id === $categoria->id) 
+</div>
+<div class="row container">
+    @foreach ($productos as $producto)
         <div class="col-lg-4 contenido">
-            <a href="categorias/{{ $categoria->slug }}/productos/{{ $producto->slug }}">
-                <img class="img-rounded reducida" src="{{ $producto->imagen }}" alt="foto de tabla">
-            </a>
-            <p>{{ $producto->nombre }}</p>
-            <p class="precio">{{ $producto->precio }} €</p>
-        </div>
+        @foreach ($categorias as $categoria)
+        @if ($producto->categoria_id === $categoria->id)
+        <a class="" href="categorias/{{ $categoria->slug }}/productos/{{ $producto->slug }}">
+            <img class="img-rounded" src="{{ $producto->imagen }}" alt="foto de tabla">
+        </a>
+        <p>{{ $producto->nombre }}</p>
+        <p class="precio">{{ $producto->precio }} €</p>
         @endif
         @endforeach
-        @endforeach
     </div>
+    @endforeach
 </div>
 
 @endsection

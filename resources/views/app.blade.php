@@ -23,7 +23,7 @@
         <div class="container">
             <header>
                 <figure>
-                    <img class="img-rounded" src="{{ asset('img/imagenes/fototitulo.png') }}" alt="imagen de inicio">
+                    <img class="img-rounded" src="{{ asset('img/inicio/fototitulo.png') }}" alt="imagen de inicio">
                 </figure>
             </header>
             <nav class="navbar navbar-default">
@@ -37,11 +37,11 @@
                         </button>
                         @if (Auth::check())
                         <a class="navbar-brand" href="{{ route('users.show', Auth::user()) }}">
-                        @else
-                        <a class="navbar-brand" href="/">
-                        @endif
-                            <img class="img logotienda" src="{{ asset('img/iconos/navbrand.png') }}" alt="logo de la tienda">
-                        </a>
+                            @else
+                            <a class="navbar-brand" href="/">
+                                @endif
+                                <img class="img logotienda" src="{{ asset('img/iconos/navbrand.png') }}" alt="logo de la tienda">
+                            </a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">

@@ -19,8 +19,21 @@ body {
     padding-right: 0px;
 }
 
+.img-carr {
+    width: 97%;     
+}
+
+.ajustado {
+    margin: auto;
+}
+
 .reducida {
     width: 99%;
+}
+
+.foto_ajus {
+    width: 100%;
+    height: 100%;
 }
 
 .logotienda {
@@ -96,7 +109,7 @@ header h1 {
     text-align: center;
 }*/
 
-figure {
+figure, .margen-inferior {
     margin-bottom: 1em;
 }
 
