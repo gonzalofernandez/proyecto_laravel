@@ -11,11 +11,11 @@ class UsersTableSeeder extends Seeder {
         $usuarios = array(
             'nombre' => 'Gonzalo',
             'apellidos' => 'Fernandez Pineda',
-            'email' => 'gonzalo.fernande@hotmail.com',
+            'email' => 'g@g.es',
             'password' => \Hash::make('1234'),
             'direccion' => 'c/Alcantara 8 4º D',
             'localidad' => 'Madrid',
-            'cp' => '28030',
+            'cp' => '28000',
             'type' => 'admin',
         );
 

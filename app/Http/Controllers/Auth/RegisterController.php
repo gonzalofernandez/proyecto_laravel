@@ -67,7 +67,7 @@ use RegistersUsers;
         return User::create([
                     'nombre' => $data['nombre'],
                     'apellidos' => $data['apellidos'],
-                    'password' => 'password'/*bcrypt($data['password'])*/,
+                    'password' => $data['password'],
                     'email' => $data['email'],
                     'direccion' => $data['direccion'],
                     'localidad' => $data['localidad'],

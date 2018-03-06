@@ -29,20 +29,18 @@ class HomeController extends Controller {
      */
     public function index(Request $request) {
         //
-        if ($request->session()->has('productos')) {
-            $productos = session('productos');
-        } else {
-            $productos = session(['productos' => [
+        if (!$request->session()->has('productos')) {
+            session(['productos' => [
                     \App\Producto::where('categoria_id', 1)->get()->random(),
                     \App\Producto::where('categoria_id', 2)->get()->random(),
                     \App\Producto::where('categoria_id', 3)->get()->random(),
             ]]);
         }
-        if ($request->session()->has('categorias')) {
-            $categorias = session('categorias');
-        } else {
-            $categorias = session(['categorias' => \App\Categoria::all()]);
+        $productos = session('productos');
+        if (!$request->session()->has('categorias')) {
+            session(['categorias' => \App\Categoria::all()]);
         }
+        $categorias = session('categorias');
         return view('layouts.inicio', compact('categorias', 'productos'));
     }
 
