@@ -19,12 +19,6 @@ class HomeController extends Controller {
      */
     public function __construct() {
         //
-        $this->categorias = \App\Categoria::all();
-        $this->productos = [
-            \App\Producto::where('categoria_id', 1)->get()->random(),
-            \App\Producto::where('categoria_id', 2)->get()->random(),
-            \App\Producto::where('categoria_id', 3)->get()->random(),
-        ];
         $this->middleware('auth', ['only' => ['ofertas']]);
     }
 
@@ -33,16 +27,28 @@ class HomeController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
         //
-        $categorias = $this->categorias;
-        $productos = $this->productos;
+        if ($request->session()->has('productos')) {
+            $productos = session('productos');
+        } else {
+            $productos = session(['productos' => [
+                    \App\Producto::where('categoria_id', 1)->get()->random(),
+                    \App\Producto::where('categoria_id', 2)->get()->random(),
+                    \App\Producto::where('categoria_id', 3)->get()->random(),
+            ]]);
+        }
+        if ($request->session()->has('categorias')) {
+            $categorias = session('categorias');
+        } else {
+            $categorias = session(['categorias' => \App\Categoria::all()]);
+        }
         return view('layouts.inicio', compact('categorias', 'productos'));
     }
 
     public function legal() {
         //
-        $categorias = $this->categorias;
+        $categorias = session('categorias');
         return view('layouts.privacidad', compact('categorias'));
     }
 
@@ -51,15 +57,16 @@ class HomeController extends Controller {
         $busqueda = $request->get('busqueda');
         $filtro = $request->get('filtro-busqueda');
         $productos = \App\Producto::name($busqueda, $filtro)->paginate(3);
-        $categorias = $this->categorias;
+        $categorias = session('categorias');
         return view('layouts.buscar', compact('categorias', 'productos', 'busqueda'));
     }
-    
+
     public function ofertas() {
         //
-        $categorias = $this->categorias;
-        $descuentoOferta = floatval(0.85);
-        $ofertas = $this->productos;
+        $categorias = session('categorias');
+        $ofertas = session('productos');
+        session(['descuentoOferta' => floatval(0.85)]);
+        $descuentoOferta = session('descuentoOferta');
         return view('layouts.usuario.ofertas', compact('categorias', 'ofertas', 'descuentoOferta'));
     }
 

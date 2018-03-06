@@ -27,7 +27,7 @@ class CategoriasController extends Controller {
      * @return Response
      */
     public function create() {
-        //return view('projects.create');
+        //
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoriasController extends Controller {
      * 
      */
     public function show(Categoria $categoria) {
-        $categorias = Categoria::all();
+        $categorias = session('categorias');
         $productos = $categoria->productos()->paginate(3);
         return view('layouts.categoria', compact('categorias', 'categoria', 'productos'));
     }
@@ -83,7 +83,7 @@ class CategoriasController extends Controller {
     }
 
     public function filtrar(Categoria $categoria, Request $request) {
-        $categorias = Categoria::all();
+        $categorias = session('categorias');
         $criterio = $request->get('criterio');
         $orden = $request->get('orden');
         $productos = \App\Producto::productos($categoria->getAttribute('id'), $criterio, $orden)->paginate(3);

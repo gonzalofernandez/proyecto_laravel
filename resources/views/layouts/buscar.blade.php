@@ -32,7 +32,11 @@
         <nav aria-label="Elemento de navegacion">
             {{ $productos->appends(['busqueda' => $busqueda])->links() }}
         </nav>
+        @if (Auth::check())
+        <a href="/home">Volver</a>
+        @else
         <a href="/">Volver</a>
+        @endif
     </div>
 </section>
 @endsection

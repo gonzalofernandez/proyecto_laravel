@@ -45,7 +45,11 @@
             {{ $productos->links() }}
             @endif
         </nav>
+        @if (Auth::check())
+        <a href="/home">Volver</a>
+        @else
         <a href="/">Volver</a>
+        @endif
     </div>
 </section>
 

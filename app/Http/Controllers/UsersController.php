@@ -38,7 +38,7 @@ class UsersController extends Controller {
      */
     public function create() {
         //
-        $categorias = Categoria::all();
+        $categorias = session('categorias');
         return view('layouts.usuario.registro', compact('categorias'));
     }
 
@@ -49,7 +49,7 @@ class UsersController extends Controller {
      */
     public function store(Request $request) {
         //
-        /* $categorias = Categoria::all();
+        /* $categorias = session('categorias');
           $this->validate($request, $this->rules);
           $user = new User($request->all());
           $user->type = 'user';
@@ -96,13 +96,9 @@ class UsersController extends Controller {
     public function show($id) {
         //
         $usuario = User::find($id);
-        $categorias = Categoria::all();
-        $ofertas = [
-            \App\Producto::where('categoria_id', 1)->get()->random(),
-            \App\Producto::where('categoria_id', 2)->get()->random(),
-            \App\Producto::where('categoria_id', 3)->get()->random(),
-        ];
-        $descuentoOferta = floatval(0.85);
+        $categorias = session('categorias');
+        $ofertas = session('productos');
+        $descuentoOferta = session('descuentoOferta');
         return view('layouts.usuario.ofertas', compact('categorias', 'usuario', 'ofertas', 'descuentoOferta'));
     }
 
@@ -115,7 +111,7 @@ class UsersController extends Controller {
     public function edit($id) {
         //
         $usuario = User::find($id);
-        $categorias = Categoria::all();
+        $categorias = session('categorias');
         return view('layouts.usuario.perfil', compact('categorias', 'usuario'));
     }
 
@@ -132,13 +128,9 @@ class UsersController extends Controller {
         $this->validate($request, $this->rules);
         $usuario->update($input);
         $usuario->save();
-        $categorias = Categoria::all();
+        $categorias = session('categorias');
         $descuentoOferta = floatval(0.85);
-        $ofertas = [
-            \App\Producto::where('categoria_id', 1)->get()->random(),
-            \App\Producto::where('categoria_id', 2)->get()->random(),
-            \App\Producto::where('categoria_id', 3)->get()->random(),
-        ];
+        $ofertas = session('productos');
         Session::flash('message', 'Sus datos han sido actualizados');
         return view('layouts.usuario.ofertas', compact('categorias', 'usuario', 'ofertas', 'descuentoOferta'));
     }

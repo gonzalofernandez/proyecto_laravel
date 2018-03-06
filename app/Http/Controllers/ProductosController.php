@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class ProductosController extends Controller {
+    
     /* protected $rules = [
       'name' => ['required', 'min:3'],
       'slug' => ['required'],
@@ -25,8 +26,9 @@ class ProductosController extends Controller {
      * @return Response
      */
     public function index(Producto $producto) {
-        return view('layouts.producto', compact('producto'))
-                        ->with('categorias', Categoria::all());
+        //
+        $categorias = session('categorias');
+        return view('layouts.producto', compact('producto', 'categorias'));
     }
 
     /**
@@ -63,11 +65,12 @@ class ProductosController extends Controller {
      * @return Response
      */
     public function show(Categoria $categoria, Producto $producto, $ofertas = null) {
+        //
         if ($ofertas) {
             $descuentoOferta = 0.85;
         }
-        return view('layouts.producto', compact('categoria', 'producto', 'descuentoOferta'))
-                        ->with('categorias', Categoria::all());
+        $categorias = session('categorias');
+        return view('layouts.producto', compact('categoria', 'producto', 'descuentoOferta', 'categorias'));
     }
 
     /**
@@ -115,9 +118,10 @@ class ProductosController extends Controller {
     }
 
     public function oferta(Categoria $categoria, Producto $producto) {
+        //
+        $categorias = session('categorias');
         $descuentoOferta = 0.85;
-        return view('layouts.producto', compact('categoria', 'producto', 'descuentoOferta'))
-                        ->with('categorias', Categoria::all());
+        return view('layouts.producto', compact('categoria', 'producto', 'descuentoOferta', 'categorias'));
     }
 
 }
