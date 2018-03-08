@@ -63,8 +63,8 @@ use RegistersUsers;
      * @return \App\User
      */
     protected function create(array $data) {
-        Session::flash('message', 'Se ha registrado en la aplicación');
-        return User::create([
+        Session::flash('message', 'Hemos enviado un enlace de confirmación a su cuenta de correo');
+        $usuario = User::create([
                     'nombre' => $data['nombre'],
                     'apellidos' => $data['apellidos'],
                     'password' => $data['password'],
@@ -76,6 +76,15 @@ use RegistersUsers;
                     'confirm_token' => str_random(100),
                     'remember_token' => str_random(100),
         ]);
+        //Envío de mail de confirmación
+        /*$datosMail['nombre'] = $usuario->nombre;
+        $datosMail['email'] = $usuario->email;
+        $datosMail['confirm_token'] = $usuario->confirm_token;
+        \Mail::send('layouts.emails.registro', ['datosMail' => $datosMail], function($msj) use ($datosMail) {
+            $msj->subject('Confirmación de registro en Snow-Shop');
+            $msj->to($datosMail['email'], $datosMail['nombre']);
+        });*/
+        return $usuario;
     }
 
 }

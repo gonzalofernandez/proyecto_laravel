@@ -21,9 +21,10 @@ class CreateUsersTable extends Migration {
             $table->string('direccion');
             $table->string('localidad');
             $table->integer('cp');
-            $table->boolean('mail_confirmado')->default(0);
+            $table->boolean('mail_confirmado')->default(false);
             $table->enum('type', ['admin', 'user']);
             $table->rememberToken();
+            $table->string('confirm_token')->default(false);
             $table->timestamps();
         });
     }

@@ -31,6 +31,7 @@ class User extends Authenticatable {
         'cp',
         'type',
         'remember_token',
+        'confirm_token',
     ];
 
     /**
@@ -39,7 +40,7 @@ class User extends Authenticatable {
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'confirm_token',
     ];
 
     public function setPasswordAttribute($value) {
