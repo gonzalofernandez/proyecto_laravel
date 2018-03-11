@@ -53,22 +53,30 @@ class UsersController extends Controller {
 
     public function confirmarRegistro($confirm_token) {
         //
-        /*$usuario = \App\User::where('confirm_token', '=', $confirm_token)->get();
-        // si hay usuario activamos la cuenta
-        if ($user) {
-            if ($user->active == 0) {
-                $user->type = 'user';
-                $active = 1;
-                $user->fill(['active' => $active]);
-                $user->save();
-                Session::flash('success', 'Bienvenido ' . $user->name . ' tu cuenta esta activada, ya puedes iniciar sesion');
-                return \Redirect::route('usuario.index');
-            } else {
-                return \Redirect::route('usuario.index');
+        $usuario = \App\User::where('confirm_token', $confirm_token)->first();
+        if ($usuario) {
+            $usuario->mail_confirmado = true;
+            $usuario->save();
+            Session::flash('success', 'Ya puedes iniciar sesión con tu email y contraseña');
+            \Auth::login($usuario, true);
+            if (!Session::has('productos')) {
+                session(['productos' => [
+                        \App\Producto::where('categoria_id', 1)->get()->random(),
+                        \App\Producto::where('categoria_id', 2)->get()->random(),
+                        \App\Producto::where('categoria_id', 3)->get()->random(),
+                ]]);
             }
+            if (!Session::has('categorias')) {
+                session(['categorias' => \App\Categoria::all()]);
+            }
+            if (!Session::has('descuentoOferta')) {
+                session(['descuentoOferta' => floatval(0.85)]);
+            }
+            return redirect()->action('UsersController@show', ['id' => $usuario->id]);
+        } else {
+            Session::flash('danger', 'Error de activación, token no encontrado');
+            return redirect()->action('HomeController@index');
         }
-        Session::flash('danger', 'Error de activación, token no encontrado');
-        return \Redirect::route('usuario.index');*/
     }
 
     /**
@@ -128,10 +136,18 @@ class UsersController extends Controller {
      */
     public function destroy($id) {
         //
+        $usuario = User::find($id);
+        //Envío de mail de confirmación
+        $datosMail['nombre'] = $usuario->nombre;
+        $datosMail['email'] = $usuario->email;
+        \Mail::send('layouts.emails.baja', ['datosMail' => $datosMail], function($msj) use ($datosMail) {
+            $msj->subject('Confirmación de baja en Snow-Shop');
+            $msj->to($datosMail['email'], $datosMail['nombre']);
+        });
         User::destroy($id);
         \Auth::logout();
         \Session::flush();
-        \Session::flash('message', 'Su perfil ha sido eliminado');
+        \Session::flash('message', 'Revise su correo electrónico para confirmar la baja de nuestros servicios');
         return redirect()->action('HomeController@index');
     }
 

@@ -23,7 +23,7 @@ Route::get('/derechos', 'HomeController@legal');
 Route::get('/categorias/{categoria}/filtrar', 'CategoriasController@filtrar');
 Route::get('/categorias/{categoria}/productos/{producto}/oferta', 'ProductosController@oferta');
 Route::get('/categorias/{categoria}/productos/{producto}', 'ProductosController@show');
-//Route::get('/verificacion/{confirm_token}', 'UsersController@confirmarRegistro');
+Route::get('/verificacion/{confirm_token}', 'UsersController@confirmarRegistro');
 
 //Atenticación y registro
 Auth::routes();

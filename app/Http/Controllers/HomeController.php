@@ -29,6 +29,9 @@ class HomeController extends Controller {
      */
     public function index(Request $request) {
         //
+        if (\Auth::user() && !\Auth::user()->mail_confirmado) {
+            \Auth::logout();
+        }
         if (!$request->session()->has('productos')) {
             session(['productos' => [
                     \App\Producto::where('categoria_id', 1)->get()->random(),

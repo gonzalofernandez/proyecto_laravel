@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>SnowShop</title>
 
+        <!--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">-->
         <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/styles.css') }}" rel="stylesheet">
 
@@ -175,8 +176,12 @@
                 <p class="text-uppercase aclarado" id="copyright">2018 - interface design</p>    
             </footer>
             <!-- Scripts -->
-            <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <!--<script src="{{ asset('js/bootstrap.min.js') }}"></script>-->
         </div>
     </body>
 </html>

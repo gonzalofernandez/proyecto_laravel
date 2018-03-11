@@ -4,6 +4,9 @@
 
 <section>
     <h1  id="titulo-categoria" class="azul">{{ $categoria->nombre }}</h1>
+    @if (Auth::check())
+    <h2  id="titulo-categoria" class="rojo">10% de descuento por ser socio</h2>
+    @endif
     @if ( !$categoria->productos->count() )
     No hay productos.
     @else

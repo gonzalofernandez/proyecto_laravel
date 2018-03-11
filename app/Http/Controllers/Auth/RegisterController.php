@@ -27,7 +27,7 @@ use RegistersUsers;
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -77,13 +77,13 @@ use RegistersUsers;
                     'remember_token' => str_random(100),
         ]);
         //Envío de mail de confirmación
-        /*$datosMail['nombre'] = $usuario->nombre;
+        $datosMail['nombre'] = $usuario->nombre;
         $datosMail['email'] = $usuario->email;
         $datosMail['confirm_token'] = $usuario->confirm_token;
         \Mail::send('layouts.emails.registro', ['datosMail' => $datosMail], function($msj) use ($datosMail) {
             $msj->subject('Confirmación de registro en Snow-Shop');
             $msj->to($datosMail['email'], $datosMail['nombre']);
-        });*/
+        });
         return $usuario;
     }
 
