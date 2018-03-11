@@ -22,12 +22,7 @@
     </head>
     <body>
         <div class="container">
-            <header>
-                <figure>
-                    <img class="img-rounded" src="{{ asset('img/inicio/fototitulo.png') }}" alt="imagen de inicio">
-                </figure>
-            </header>
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default margen-corregido">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -92,6 +87,9 @@
                     </div>
                 </div>
             </nav>
+            <figure>
+                <img class="img-rounded" src="{{ asset('img/inicio/fototitulo.png') }}" alt="imagen de inicio">
+            </figure>
             <main class="col-lg-10 contenido text-center">
                 @if (Session::has('message'))
                 <div class="flash alert-info">

@@ -12,6 +12,7 @@
 
 body {
     font-family: Georgia, "Times New Roman", Times, serif;
+    text-align: center;
 }
 
 .contenido {
@@ -29,6 +30,10 @@ body {
 
 .reducida {
     width: 99%;
+}
+
+.margen-corregido {
+    margin-bottom: 0px;
 }
 
 .foto_ajus {
