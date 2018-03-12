@@ -24,6 +24,7 @@ Route::get('/categorias/{categoria}/filtrar', 'CategoriasController@filtrar');
 Route::get('/categorias/{categoria}/productos/{producto}/oferta', 'ProductosController@oferta');
 Route::get('/categorias/{categoria}/productos/{producto}', 'ProductosController@show');
 Route::get('/verificacion/{confirm_token}', 'UsersController@confirmarRegistro');
+Route::get('/tiendas','SoapController@show');
 
 //Atenticación y registro
 Auth::routes();

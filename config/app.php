@@ -145,6 +145,7 @@ return [
          * Package Service Providers...
          */
         Collective\Html\HtmlServiceProvider::class,
+        //Artisaninweb\SoapWrapper\ServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -153,6 +154,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
     ],
     /*
       |--------------------------------------------------------------------------
@@ -200,5 +202,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        //'SoapWrapper' => Artisaninweb\SoapWrapper\Facade::class,
     ],
 ];
